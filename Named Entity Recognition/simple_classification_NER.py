@@ -97,6 +97,7 @@ def word2features(sent, i):
         word.isupper(), # fitur apakah karakter pertama token merupakan huruf kapital
         word.istitle(), # fitur apakah token merupakan title
         word.isdigit(), # fitur apakah token merupakan digit
+        word.isalpha(), # fitur apakah token hanya mengandung alfabet
         postag_dict[postag] # fitur kode postag token
     ]
                 
@@ -150,5 +151,9 @@ print(X_test[0])
 print(clf.predict(X_test[0].reshape(1,-1)))
 
 # Coba test, keseluruhan data test
+pred = clf.predict(X_test)
 print('hasil klasifikasi data test:')
-print(clf.predict(X_test))
+print(pred)
+
+print("akurasi :")
+print(classification_report(y_test,pred))
